@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Simple Quiz</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 20px;
+        background-color: #f4f4f4;
+      }
+      h1 {
+        text-align: center;
+      }
+      .question {
+        background-color: #fff;
+        padding: 10px;
+        margin: 15px 0;
+        border-radius: 8px;
+      }
+      .question p {
+        font-size: 18px;
+      }
+      .options {
+        list-style-type: none;
+        padding: 0;
+      }
+      .options li {
+        margin: 10px 0;
+      }
+      button {
+        display: block;
+        margin: 20px auto;
+        padding: 10px 20px;
+        font-size: 18px;
+        cursor: pointer;
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+      }
+      button:hover {
+        background-color: #45a049;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Simple Quiz</h1>
+
+    <form id="quizForm">
+      <!-- Question 1 -->
+      <div class="question">
+        <p>1. What is the capital of France?</p>
+        <ul class="options">
+          <li><input type="radio" name="q1" value="Paris" /> Paris</li>
+          <li><input type="radio" name="q1" value="London" /> London</li>
+          <li><input type="radio" name="q1" value="Berlin" /> Berlin</li>
+          <li><input type="radio" name="q1" value="Madrid" /> Madrid</li>
+        </ul>
+      </div>
+
+      <!-- Question 2 -->
+      <div class="question">
+        <p>2. Which planet is known as the Red Planet?</p>
+        <ul class="options">
+          <li><input type="radio" name="q2" value="Earth" /> Earth</li>
+          <li><input type="radio" name="q2" value="Mars" /> Mars</li>
+          <li><input type="radio" name="q2" value="Jupiter" /> Jupiter</li>
+          <li><input type="radio" name="q2" value="Saturn" /> Saturn</li>
+        </ul>
+      </div>
+
+      <!-- Question 3 -->
+      <div class="question">
+        <p>3. Who wrote the play 'Romeo and Juliet'?</p>
+        <ul class="options">
+          <li>
+            <input type="radio" name="q3" value="Shakespeare" /> William
+            Shakespeare
+          </li>
+          <li>
+            <input type="radio" name="q3" value="Dickens" /> Charles Dickens
+          </li>
+          <li>
+            <input type="radio" name="q3" value="Hemingway" /> Ernest Hemingway
+          </li>
+          <li><input type="radio" name="q3" value="Austen" /> Jane Austen</li>
+        </ul>
+      </div>
+
+      <!-- Question 4 -->
+      <div class="question">
+        <p>4. What is the largest ocean on Earth?</p>
+        <ul class="options">
+          <li>
+            <input type="radio" name="q4" value="Atlantic" /> Atlantic Ocean
+          </li>
+          <li>
+            <input type="radio" name="q4" value="Pacific" /> Pacific Ocean
+          </li>
+          <li><input type="radio" name="q4" value="Indian" /> Indian Ocean</li>
+          <li><input type="radio" name="q4" value="Arctic" /> Arctic Ocean</li>
+        </ul>
+      </div>
+
+      <!-- Question 5 -->
+      <div class="question">
+        <p>5. Who painted the Mona Lisa?</p>
+        <ul class="options">
+          <li>
+            <input type="radio" name="q5" value="Van Gogh" /> Vincent van Gogh
+          </li>
+          <li>
+            <input type="radio" name="q5" value="Da Vinci" /> Leonardo da Vinci
+          </li>
+          <li>
+            <input type="radio" name="q5" value="Picasso" /> Pablo Picasso
+          </li>
+          <li><input type="radio" name="q5" value="Dali" /> Salvador Dalí</li>
+        </ul>
+      </div>
+
+      <button type="button" onclick="checkAnswers()">Submit</button>
+    </form>
+
+    <div id="result" style="text-align: center; margin-top: 20px"></div>
+
+    <script>
+      function checkAnswers() {
+        // Correct answers
+        var correctAnswers = {
+          q1: "Paris",
+          q2: "Mars",
+          q3: "Shakespeare",
+          q4: "Pacific",
+          q5: "Da Vinci",
+        };
+
+        var score = 0;
+        var form = document.getElementById("quizForm");
+
+        // Check each question
+        for (var i = 1; i <= 5; i++) {
+          var selectedOption = form.querySelector(
+            'input[name="q' + i + '"]:checked'
+          );
+
+          if (
+            selectedOption &&
+            selectedOption.value === correctAnswers["q" + i]
+          ) {
+            score++;
+          }
+        }
+
+        // Display result
+        var result = document.getElementById("result");
+        result.innerHTML = "<h2>Your Score: " + score + "/5</h2>";
+      }
+    </script>
+  </body>
+</html>
