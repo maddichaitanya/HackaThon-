@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>3D Geometrical Shapes</title>
+    <style>
+      body {
+        margin: 0;
+        background-color: white;
+      }
+      canvas {
+        display: block;
+      }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  </head>
+  <body>
+    <script style="background-color: white">
+      // Scene setup
+      var scene = new THREE.Scene();
+      var camera = new THREE.PerspectiveCamera(
+        75,
+        window.innerWidth / window.innerHeight,
+        0.1,
+        1000
+      );
+      var renderer = new THREE.WebGLRenderer();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      document.body.appendChild(renderer.domElement);
+
+      // Create the circle
+      var geometryCircle = new THREE.CircleGeometry(5, 40);
+      var materialCircle = new THREE.MeshBasicMaterial({ color: 0xffff00 });
+      var circle = new THREE.Mesh(geometryCircle, materialCircle);
+      circle.position.x = -10;
+      scene.add(circle);
+
+      // Create the square (cube)
+      var geometrySquare = new THREE.BoxGeometry(5, 5, 5);
+      var materialSquare = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+      var square = new THREE.Mesh(geometrySquare, materialSquare);
+      scene.add(square);
+
+      // Create the triangle (pyramid)
+      var geometryTriangle = new THREE.ConeGeometry(5, 10, 3);
+      var materialTriangle = new THREE.MeshBasicMaterial({ color: 0xff0000 });
+      var triangle = new THREE.Mesh(geometryTriangle, materialTriangle);
+      triangle.position.x = 10;
+      scene.add(triangle);
+
+      // Set camera position
+      camera.position.z = 20;
+
+      // Animation loop
+      function animate() {
+        requestAnimationFrame(animate);
+        renderer.render(scene, camera);
+
+        // Rotate shapes for effect
+        circle.rotation.x += 0.01;
+        circle.rotation.y += 0.01;
+
+        square.rotation.x += 0.01;
+        square.rotation.y += 0.01;
+
+        triangle.rotation.x += 0.01;
+        triangle.rotation.y += 0.01;
+      }
+      animate();
+    </script>
+  </body>
+</html>
